@@ -1,7 +1,7 @@
 # UTCTF 2024
 ## Beginner: Basic Reversing Problem
 
-In keygen function, the program consecutively adding characters to the key.
+In keygen function, the program consecutively added characters to the key.
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/cef44d9d-982f-4bb4-addc-d3fc1fb89884)
 

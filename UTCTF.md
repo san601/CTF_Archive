@@ -31,5 +31,5 @@ for i in range(flag_len):
 
 print(bytes.fromhex(flag))
 ```
-![image](https://github.com/san601/CTF_Archive/assets/144963803/466bb1f1-c9c4-4db4-8e54-9976a69154dc)
+![image](https://github.com/san601/CTF_Archive/assets/144963803/d3b4acb1-c6bc-4871-8fd9-c4e1fcc69397)
 

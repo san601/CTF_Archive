@@ -54,18 +54,23 @@ After a while, I noticed that:
 - The program treated our input as a string of hex bytes:
   
 This was my input:
+
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/9a8d78c6-d231-4bbe-95ed-a656085d0936)
 
 This was how the program store my input:
+
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/7a9183b7-1145-40be-9bbd-ca1feab07174)
 
 This was my input after some calculation:
+
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/46404e51-1210-44b1-a73a-ff239ef2c45a)
 
 This was the output:
+
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/46fb9de2-3ce1-40a7-9041-211ebde7b2f3)
 
-With those idea in mind, we can now brute-forcing each character at a time, compare it with the encrypted flag 
+With those idea in mind, we can now brute-forcing each character at a time, compare it with the encrypted flag.
+
 Here is my script to cAptURe tHe fLaG.
 ```python
 from pwn import *

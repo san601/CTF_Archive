@@ -1,6 +1,11 @@
-**UTCTF 2024**
-*PES-128*
-Sau 1 lúc chạy thử thì em thấy từng ký tự output không ảnh hưởng bởi cả đoạn input nên em dùng script để brute
+## UTCTF 2024
+# Beginner: Basic Reversing Problem
+# Fruit Deals
+# PES-128
+After a while, I noticed that:
+- The output string is not affected by a whole input string.
+- The program treat oủ input as a string of hex bytes.
+Here is my script to brute forcing the flag.
 ```python
 from pwn import *
 
@@ -26,4 +31,5 @@ for i in range(flag_len):
 
 print(bytes.fromhex(flag))
 ```
+![image](https://github.com/san601/CTF_Archive/assets/144963803/466bb1f1-c9c4-4db4-8e54-9976a69154dc)
 

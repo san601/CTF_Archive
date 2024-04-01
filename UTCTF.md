@@ -3,8 +3,17 @@
 # Fruit Deals
 # PES-128
 After a while, I noticed that:
-- The output string is not affected by a whole input string.
-- The program treat oủ input as a string of hex bytes.
+- Each character in the output string is not calculated based on a whole input string.
+- The program treat our input as a string of hex bytes:
+This was my input:
+![image](https://github.com/san601/CTF_Archive/assets/144963803/9a8d78c6-d231-4bbe-95ed-a656085d0936)
+This was how the program store my input:
+![image](https://github.com/san601/CTF_Archive/assets/144963803/7a9183b7-1145-40be-9bbd-ca1feab07174)
+This was my input after some calculation:
+![image](https://github.com/san601/CTF_Archive/assets/144963803/46404e51-1210-44b1-a73a-ff239ef2c45a)
+This was the output:
+![image](https://github.com/san601/CTF_Archive/assets/144963803/d100e88e-7398-442f-9a97-94e291efd03b)
+
 Here is my script to brute forcing the flag.
 ```python
 from pwn import *

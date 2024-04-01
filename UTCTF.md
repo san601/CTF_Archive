@@ -1,7 +1,5 @@
 # UTCTF 2024
 ## Beginner: Basic Reversing Problem
-### So many function calls... but are they that different?
-### By Khael (@malfuncti0nal on discord)
 
 In keygen function, the program consecutively added characters to the key.
 
@@ -51,6 +49,7 @@ http://fruit.gang/malware/banANA-Hakrz09182afd4.exe
 So the flag is utflag{banANA-Hakrz09182afd4.exe}
 
 ## PES-128
+
 After a while, I noticed that:
 - Each character in the output string was not calculated based on a whole input string.
 - The program treated our input as a string of hex bytes:

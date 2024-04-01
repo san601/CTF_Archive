@@ -1,7 +1,7 @@
 **UTCTF 2024**
 *PES-128*
 Sau 1 lúc chạy thử thì em thấy từng ký tự output không ảnh hưởng bởi cả đoạn input nên em dùng script để brute
-```python=
+```python
 from pwn import *
 
 enc_flag = '75ac713a945e9f78f657b735b7e1913cdece53b8853f3a7daade83b319c49139f8f655b0b77b'

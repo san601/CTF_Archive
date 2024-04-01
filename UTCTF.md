@@ -1,5 +1,7 @@
 # UTCTF 2024
 ## Beginner: Basic Reversing Problem
+### So many function calls... but are they that different?
+### By Khael (@malfuncti0nal on discord)
 
 In keygen function, the program consecutively added characters to the key.
 

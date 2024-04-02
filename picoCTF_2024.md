@@ -45,11 +45,11 @@ This felt like a loop.
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/43885da3-3926-4727-bd80-d831defadf6c)
 
-![image](https://github.com/san601/CTF_Archive/assets/144963803/cee35318-83e8-497a-b878-ff778f7d9f8e)
-
 Jump into it, there is a part of code at loc_BA3929 where it check for the flag. But you can't see this in pseudo code because the condition to call to loc_BA3929 is never satisfied. In other words, this is a infinite loop and we can get the flag whenever we can break out of it.
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/8a7cba59-9bf8-4b23-adbe-0c39d7c17e8f)
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/72a74f6f-9b1a-4808-b8ae-7150d3f4983a)
 
 This chunk of code was the condition for while loop. As jz would only jump if eax = 0, this jump could never be used. Let's set a breakpoint to modify eax. 
 

@@ -42,9 +42,23 @@ So I knew I have to look for something else. Then I noticed that the program cre
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/007436fc-4c96-4785-b50c-68424db21c07)
 
 This felt like a loop. 
+
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/43885da3-3926-4727-bd80-d831defadf6c)
 
-Weird that I couldn't synchronize it with pseudocode
+Jump into it, there is a part of code at loc_BA3929 where it check for the flag. But you can't see this in pseudocode because the condition to call to loc_BA3929 is never satisfied. In other words, this is a infinite loop and we can get the flag whenever we can break out of it.
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/8a7cba59-9bf8-4b23-adbe-0c39d7c17e8f)
+
+This chunk of code was the condition for while loop. As jz would only jump if eax = 0, this jump could never be used. Let's set a breakpoint to modify eax. 
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/31b9ddc9-1265-41ad-aff4-ae05031ed2a9)
+
+And this gave me my flag:
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/2822a644-9945-48ca-931a-9ae9777049cd)
+
+
+
 
 
 

@@ -27,16 +27,24 @@ As EAX = 1, my debugger was detected and it was about to messed up my stuffs. So
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/a8e15e6c-6c26-4c60-a459-eeb14d1c623b)
 
+![image](https://github.com/san601/CTF_Archive/assets/144963803/5e97594f-7d5b-45e6-b857-5abd6ce31abd)
+
 Oops, it shutted down my IDA. From this, I know that the program didn't check my debugger once and I need to know where it checked for the second time. Since it shutted down my IDA whenever I get to the condition checker, I have to use SysinternalsSuite Dbgview to track its output. Repeating what I had done and see if anything useful was captured in Dbgview:
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/ac84fceb-d5b0-4d6c-9bf9-a8648166044b)
 
-Bingo! "Debugger process terminated successfully" was what it said. Using the same method as I did earlier, I found where it actually close my IDA and interfere the condition-checking process with a breakpoint.
+Bingo! "Debugger process terminated successfully" was what it said. Using the same method as I did earlier to find where it close my debugger but IDA was brutally shutted down even before it reached my breakpoint.
 
-![image](https://github.com/san601/CTF_Archive/assets/144963803/192809bf-27cc-4631-8638-550784c2afc3)
+![image](https://github.com/san601/CTF_Archive/assets/144963803/d9b134bb-fb4b-4b56-adf9-48cd33ea078d)
 
-But the program stopped before it even met my breakpoint.
+So I knew I have to look for something else. Then I noticed that the program create a new thread at a offset called StartAddress.
 
+![image](https://github.com/san601/CTF_Archive/assets/144963803/007436fc-4c96-4785-b50c-68424db21c07)
+
+This felt like a loop. 
+![image](https://github.com/san601/CTF_Archive/assets/144963803/43885da3-3926-4727-bd80-d831defadf6c)
+
+Weird that I couldn't synchronize it with pseudocode
 
 
 

@@ -45,7 +45,9 @@ This felt like a loop.
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/43885da3-3926-4727-bd80-d831defadf6c)
 
-Jump into it, there is a part of code at loc_BA3929 where it check for the flag. But you can't see this in pseudocode because the condition to call to loc_BA3929 is never satisfied. In other words, this is a infinite loop and we can get the flag whenever we can break out of it.
+![image](https://github.com/san601/CTF_Archive/assets/144963803/cee35318-83e8-497a-b878-ff778f7d9f8e)
+
+Jump into it, there is a part of code at loc_BA3929 where it check for the flag. But you can't see this in pseudo code because the condition to call to loc_BA3929 is never satisfied. In other words, this is a infinite loop and we can get the flag whenever we can break out of it.
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/8a7cba59-9bf8-4b23-adbe-0c39d7c17e8f)
 

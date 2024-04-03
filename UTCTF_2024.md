@@ -96,7 +96,7 @@ for i in range(flag_len):
             flag += str(hex(j)[2:])
         p.close()
 
-print(bytes.fromhex(flag).decode('utf-8')
+print(bytes.fromhex(flag).decode('utf-8'))
 ```
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/d3b4acb1-c6bc-4871-8fd9-c4e1fcc69397)

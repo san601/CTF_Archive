@@ -168,7 +168,9 @@ GetTickCount() retrieves the number of milliseconds that have elapsed since my c
 
 As you can see, they are off by a very little number.
 
-So basically, the execute time between ```TickCount = GetTickCount();``` and ```if ( GetTickCount() - TickCount > 1000 )``` is calculated and check if it exceed 1000 milliseconds. If this is true, surely there is a debugger.
+So basically, the executing time between ```TickCount = GetTickCount();``` and ```if ( GetTickCount() - TickCount > 1000 )``` is calculated and check if it exceed 1000 milliseconds. If this is true, surely there is a debugger.
+
+To bypass, just change the value in eax, right about where the program compares eax and the value 1000.
 
 ## ProcessMonitor
 
@@ -180,6 +182,13 @@ if ( CreateFileA("\\\\.\\Global\\ProcmonDebugLogger", 0x80000000, 7u, 0, 3u, 0x8
     exit(1);
 }
 ```
+
+When using Process Monitor to debug/analyse, ```\\.\Global\ProcmonDebugLogger``` is created to keep track of the information from Process Monitor. This line of code detects the existence of the file to check whether this program is being debugged or not.
+
+Set eax to 0xFFFFFFFF to bypass.
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/a7a149b0-a250-46cc-b41e-404f391d78d4)
+
 
 ## Detection process name
 
@@ -220,5 +229,7 @@ int sub_401130()
     return 0;
 }
 ```
+
+
 
 ## Detecting VMware

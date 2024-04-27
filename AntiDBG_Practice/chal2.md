@@ -104,6 +104,9 @@ if ( sub_401120() == 0x70 )
 
 ```NtGlobalFlag``` is the flag that the system uses to determine how to create heap structures. It is stored at an undocumented location in the ```PEB``` (process environment block) at offset ```0x68``` (32-bit machine) or offset ```0xBC``` (64-bit machine). 
 
+![image](https://github.com/san601/CTF_Archive/assets/144963803/5fe70169-2238-4079-9164-eb58a6365bcb)
+
+
 The default value for this is 0. If the process was created by a debugger, the following flags will be set:
 
 ```
@@ -130,6 +133,21 @@ if ( pbDebuggerPresent[0] )
     exit(1);
 }
 ```
+
+From Microsoft's document about CheckRemoteDebuggerPresent function:
+
+```C
+BOOL CheckRemoteDebuggerPresent(
+  [in]      HANDLE hProcess,
+  [in, out] PBOOL  pbDebuggerPresent
+);
+```
+
+hProcess is the handle to the process, pbDebuggerPresent is where the function return its value (True if the process is being debugged, or False otherwise.
+
+To bypass this, we can either change the value or patch the jz instruction (to jnz)
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/a8c3decb-32b5-4d02-bba3-13a7d49b4004)
 
 ## Time difference detection
 

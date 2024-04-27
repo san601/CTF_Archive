@@ -16,6 +16,8 @@ Secondly, this right here is another technique to check if I have any breakpoint
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/f13ba6a4-d762-4e99-ba13-6eff2af72c40)
 
+Basically, whenever a debugger sets a breakpoint to an address, it will change the first byte of the instruction to ```0xCC```. This for loop iterates from ```main``` to ```marker```, in other words, iterates through every instruction in the ```main``` function to check if any breakpoints exist.
+
 We can also patch it to skip the process. I did a small patch to the jump command, from jl to jge to break out of the loop immediately.
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/c7e604c4-9e3d-4a3f-8021-c09602d0f624)

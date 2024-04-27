@@ -18,7 +18,7 @@ We can also patch it to skip the process. I did a small patch to the jump comman
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/c7e604c4-9e3d-4a3f-8021-c09602d0f624)
 
-Lastly, we just need to set the value for s1 to be "~#L-:4;f". From observation while debugging, I know that the string "~#L-:4;f" is stored in address 0x0804A05C and therefore we can use it to change the value of s1.
+Lastly, we just need to set the value for s1 to be "\~#L-:4;f". From observation while debugging, I know that the string "\~#L-:4;f" is stored in address 0x0804A05C and therefore we can use it to change the value of s1.
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/a537c8af-ecfb-4fd7-9f5c-112ce5765947)
 

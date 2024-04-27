@@ -87,6 +87,9 @@ if ( IsDebuggerPresent() )
     exit(1);
 }
 ```
+When using a debugger, the ```IsDebuggerPresent()``` returns an 1. To bypass this, we can set a breakpoint at the instruction where the program compare the result of ```IsDebuggerPresent()``` with 1 and set the register to 0. 
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/8a67d770-404c-4c1d-b368-60e89230ee89)
 
 
 ## NtGlobalFlag
@@ -98,6 +101,23 @@ if ( sub_401120() == 0x70 )
     exit(1);
 }
 ```
+
+```NtGlobalFlag``` is the flag that the system uses to determine how to create heap structures. It is stored at an undocumented location in the ```PEB``` (process environment block) at offset ```0x68``` (32-bit machine) or offset ```0xBC``` (64-bit machine). 
+
+The default value for this is 0. If the process was created by a debugger, the following flags will be set:
+
+```
+FLG_HEAP_ENABLE_TAIL_CHECK (0x10)
+FLG_HEAP_ENABLE_FREE_CHECK (0x20)
+FLG_HEAP_VALIDATE_PARAMETERS (0x40)
+```
+
+The combination of these flag (sum up to 0x70) can be a sign that a debugger is running.
+
+Just like the previous one, just set eax to another value and you're good to go.
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/c770632b-a855-4eef-9230-3fca3c62d8ac)
+
 
 ## CheckRemoteDebuggerPresent
 

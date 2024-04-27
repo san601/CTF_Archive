@@ -6,7 +6,7 @@ Let's examine the pseudocode from IDA:
 
 We can see that this challenge uses getpwuid() to get the name of the user and use it to decrypt an encrypted flag. There are also 2 anti-debugging techniques in it.
 
-Firstly, the command ptrace(PTRACE_TRACEME, 0, 0, 0) will return 1 if the process is being traced. While debugging, the eax register will be set to 0xFFFFFFFF if the program detects debugging, 0x00000000 otherwise. This is because a process can only have one trace and the ```PTRACE_TRACEME``` argument means that the process which observes and controls the execution of this program is itself. This is the reason why using a debugger, which is attaching one more trace on the program, can cause errors.
+Firstly, while debugging, the eax register will be set to 0xFFFFFFFF if the program detects debugging, 0x00000000 otherwise. This is because a process can only have one trace and the ```PTRACE_TRACEME``` argument means that the process which observes and controls the execution of this program is itself. This is the reason why using a debugger, which is attaching one more trace on the program, can cause errors.
 
 To bypass this, just patch the program to jump if eax is not zero.
 

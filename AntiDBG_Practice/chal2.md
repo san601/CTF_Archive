@@ -147,20 +147,28 @@ hProcess is the handle to the process, pbDebuggerPresent is where the function r
 
 To bypass this, we can either change the value or patch the jz instruction (to jnz)
 
-![image](https://github.com/san601/CTF_Archive/assets/144963803/a8c3decb-32b5-4d02-bba3-13a7d49b4004)
+![image](https://github.com/san601/CTF_Archive/assets/144963803/38142264-79a5-4113-abf3-8119adb04d77)
 
 ## Time difference detection
 
 ```C
 TickCount = GetTickCount();
 pbDebuggerPresent[3] = 0;
-pbDebuggerPresent[1] = 0x3E8;
-if ( GetTickCount() - TickCount > 0x3E8 )
+pbDebuggerPresent[1] = 1000;
+if ( GetTickCount() - TickCount > 1000 )
 {
     printf("But detected debug.\n");
     exit(1);
 }
 ```
+
+GetTickCount() retrieves the number of milliseconds that have elapsed since my computer boot up.
+![image](https://github.com/san601/CTF_Archive/assets/144963803/1b663d4b-e5bc-452e-859d-ac1d881a6879)
+![image](https://github.com/san601/CTF_Archive/assets/144963803/e44fb8e8-e3f6-4f66-96d7-3aeb0da4cbf5)
+
+As you can see, they are off by a very little number.
+
+So basically, the execute time between ```TickCount = GetTickCount();``` and ```if ( GetTickCount() - TickCount > 1000 )``` is calculated and check if it exceed 1000 milliseconds. If this is true, surely there is a debugger.
 
 ## ProcessMonitor
 

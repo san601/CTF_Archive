@@ -230,6 +230,18 @@ int sub_401130()
 }
 ```
 
+This creates a snapshot to capture all the currently running processes, iterate through all and check if there exist any debugging tool
 
+To bypass, again, set eax to 0 right after this function is called.
 
 ## Detecting VMware
+
+```C
+int __spoils<ecx> sub_401240()
+{
+    __indword(22104u);
+    return 1;
+}
+```
+
+```__indword``` is used to read one double word of data from the specified port, in this case it is port number 22104.

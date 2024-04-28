@@ -400,7 +400,7 @@ First, it sets ```[ebp+var_88]``` to 1 and try to divide ```[ebp+var_9C]``` with
 
 Here, it sets ```[ebp+var_88]``` to 0. 
 
-At ```loc_40160A``` where the code ```printf("But detected Debugged.\n");``` is executed, it checks if ```[ebp+var_88]``` is equal to 1 or not. If not, there is no debugging process that currently running. 
+At ```loc_40160A``` where the code ```printf("But detected Debugged.\n");``` is executed, it checks if ```[ebp+var_88]``` is equal to 1 or not. If not, there is no debugging process that currently interfere with the flow of the program. 
 
 ```assembly
 .text:0040160A loc_40160A:                             ; CODE XREF: _main+2FE↑j
@@ -411,4 +411,4 @@ At ```loc_40160A``` where the code ```printf("But detected Debugged.\n");``` is 
 .text:00401618 call    _printf
 ```
 
-Just don't intercept the flow of the program and it will run normally, even when using a debugger.
+Just don't interfere with the flow of the program and it will run normally, even when using a debugger.

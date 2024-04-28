@@ -417,6 +417,6 @@ Just don't interfere with the flow of the program and it will run normally, even
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/0dfaa201-2733-4bf6-8898-e6db101fe933)
 
-The program will never go into left branch because of the condition being ```if (1 == 0)```. So just patch it to ```jz``` and we can run it with the key ```I have a pen.``` to get the flag.
+The program will never go into left branch because of the condition being ```if (1 != 0) go to right branch```. So just patch it to ```jz``` and we can run it with the key ```I have a pen.``` to get the flag.
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/ce422a3f-2622-4f10-8cb1-f299e426bd52)

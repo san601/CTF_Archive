@@ -71,7 +71,7 @@ if ( !v11 )
         pbDebuggerPresent[2] = 1;
         pbDebuggerPresent[5] = 1;
         pbDebuggerPresent[4] = 1 / 0;
-        ms_exc.registration.TryLevel = 0xFFFFFFFE;
+        ms_exc.registration.TryLevel = -2;
         printf("But detected Debugged.\n");
         exit(1);
     }
@@ -305,7 +305,7 @@ int __spoils<ecx> sub_401240()
 .text:004012D7                 retn
 ```
 
-Take a look at assembly instruction, IDA did a great job as it gave us intel about exception handlers and stuff. As you can see, the program will ```try``` the following block until an exception occur, which mean there is no VMware. 
+Take a look at assembly instruction, IDA did a great job as it gave us intel about exception handlers and stuff. As you can see, the program will ```try``` the following block until an exception occurs, which mean there is no VMware. 
 
 ```assembly
 :00401273 ;   __try { // __except at loc_4012A4
@@ -355,3 +355,60 @@ Therefore, the block where it set eax to 1 will not be used.
 To bypass this, change the comparison instruction, from jnz to jz.
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/29bfde9d-2bb0-4351-b6b7-7c1b6c783cfd)
+
+## Exception handler
+
+```C
+pbDebuggerPresent[2] = 1;
+pbDebuggerPresent[5] = 1;
+pbDebuggerPresent[4] = 1 / 0;
+ms_exc.registration.TryLevel = -2;
+printf("But detected Debugged.\n");
+exit(1);
+```
+
+Clearly, the ```1 / 0``` will trigger divide by zero exception.
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/7d19d537-093c-4e91-8ffa-0d5734f0b705)
+
+```assembly
+.text:004015B8 loc_4015B8:                             ; CODE XREF: _main+2B2↑j
+.text:004015B8 mov     [ebp+var_88], 1
+.text:004015C2 mov     [ebp+var_7C], 1
+.text:004015C9 mov     [ebp+var_9C], 0
+.text:004015C9
+.text:004015D3 ;   __try { // __except at loc_4015F6
+.text:004015D3 mov     [ebp+ms_exc.registration.TryLevel], 0
+.text:004015DA mov     eax, [ebp+var_7C]
+.text:004015DD cdq
+.text:004015DE idiv    [ebp+var_9C]
+.text:004015E4 mov     [ebp+var_80], eax
+.text:004015E4 ;   } // starts at 4015D3
+.text:004015E7 mov     [ebp+ms_exc.registration.TryLevel], -2
+.text:004015EE jmp     short loc_40160A
+.text:004015EE
+```
+
+First, it sets ```[ebp+var_88]``` to 1 and try to divide ```[ebp+var_9C]``` with 0. The program will jump to ```__except at loc_4015F6```
+
+```assembly
+.text:004015F6 loc_4015F6:                             ; DATA XREF: .rdata:stru_40BC40↓o
+.text:004015F6 ;   __except(loc_4015F0) // owned by 4015D3
+.text:004015F6 mov     esp, [ebp+ms_exc.old_esp]
+.text:004015F9 mov     [ebp+var_88], 0
+```
+
+Here, it sets ```[ebp+var_88]``` to 0. 
+
+At ```loc_40160A``` where the code ```printf("But detected Debugged.\n");``` is executed, it checks if ```[ebp+var_88]``` is equal to 1 or not. If not, there is no debugging process that currently running. 
+
+```assembly
+.text:0040160A loc_40160A:                             ; CODE XREF: _main+2FE↑j
+.text:0040160A cmp     [ebp+var_88], 1
+.text:00401611 jnz     short loc_401627
+.text:00401611
+.text:00401613 push    offset szButdetectedDe          ; "But detected Debugged.\n"
+.text:00401618 call    _printf
+```
+
+Just don't intercept the flow of the program and it will run normally, even when using a debugger.

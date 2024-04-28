@@ -149,6 +149,8 @@ To bypass this, we can either change the value or patch the jz instruction (to j
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/38142264-79a5-4113-abf3-8119adb04d77)
 
+![image](https://github.com/san601/CTF_Archive/assets/144963803/4f101761-f45b-48b7-9edf-59d4b7f4df67)
+
 ## Time difference detection
 
 ```C

@@ -244,19 +244,19 @@ int __spoils<ecx> sub_401240()
 }
 ```
 
-```__indword``` is used to read one double word of data from the specified port, in this case it is port number 0x5658.
+```__indword``` is used to read one double word of data from the specified port, in this case it is port number 0x5658. VMware uses I/O port 0x5658/0x5659 as a backdoor for its internal connection between VMware tools and VM Manager.
 
 ```assembly
-    mov     [ebp+ms_exc.registration.TryLevel], 0
-    push    edx
-    push    ecx
-    push    ebx
-    mov     eax, 564D5868h
-    mov     ebx, 0
-    mov     ecx, 0Ah
-    mov     edx, 5658h
-    in      eax, dx
-    pop     ebx
-    pop     ecx
-    pop     edx
+mov     [ebp+ms_exc.registration.TryLevel], 0
+push    edx
+push    ecx
+push    ebx
+mov     eax, 564D5868h     ; VMXh
+mov     ebx, 0
+mov     ecx, 0Ah
+mov     edx, 5658h
+in      eax, dx            ; Read from an I/O device
+pop     ebx
+pop     ecx
+pop     edx
 ```

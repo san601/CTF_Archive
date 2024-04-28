@@ -172,6 +172,8 @@ So basically, the executing time between ```TickCount = GetTickCount();``` and `
 
 To bypass, just change the value in eax, right about where the program compares eax and the value 1000.
 
+![image](https://github.com/san601/CTF_Archive/assets/144963803/4efaeb4b-b222-4ea4-abb0-97273b4640c1)
+
 ## ProcessMonitor
 
 ```C
@@ -232,7 +234,7 @@ int sub_401130()
 
 This creates a snapshot to capture all the currently running processes, iterate through all and check if there exist any debugging tool
 
-To bypass, again, set eax to 0 right after this function is called.
+To bypass, again, set eax to 0 right after this function is called. One weird thing is that I was using IDA to debug but the program could not detect it.
 
 ## Detecting VMware
 

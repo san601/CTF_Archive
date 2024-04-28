@@ -304,3 +304,54 @@ int __spoils<ecx> sub_401240()
 .text:004012D6                 pop     ebp
 .text:004012D7                 retn
 ```
+
+Take a look at assembly instruction, IDA did a great job as it gave us intel about exception handlers and stuff. As you can see, the program will ```try``` the following block until an exception occur, which mean there is no VMware. 
+
+```assembly
+:00401273 ;   __try { // __except at loc_4012A4
+.text:00401273                 mov     [ebp+ms_exc.registration.TryLevel], 0
+.text:0040127A                 push    edx
+.text:0040127B                 push    ecx
+.text:0040127C                 push    ebx
+.text:0040127D                 mov     eax, 564D5868h  ; VMXh
+.text:00401282                 mov     ebx, 0
+.text:00401287                 mov     ecx, 0Ah
+.text:0040128C                 mov     edx, 5658h
+.text:00401291                 in      eax, dx
+.text:00401292                 pop     ebx
+.text:00401293                 pop     ecx
+.text:00401294                 pop     edx
+```
+
+In the case there is no VMware, it will jump to loc_4012A4
+
+```assembly
+.text:004012A4 loc_4012A4:                             ; DATA XREF: .rdata:stru_40BC20↓o
+.text:004012A4 ;   __except(loc_40129E) // owned by 401273
+.text:004012A4                 mov     esp, [ebp+ms_exc.old_esp]
+.text:004012A7                 mov     [ebp+var_1C], 0
+.text:004012AE                 mov     [ebp+ms_exc.registration.TryLevel], 0FFFFFFFEh
+.text:004012B5                 mov     eax, [ebp+var_1C]
+.text:004012B8                 jmp     short loc_4012C6
+```
+
+And jump to loc_4012C6
+
+```assembly
+.text:004012C6 loc_4012C6:                             ; CODE XREF: sub_401240+78↑j
+.text:004012C6                 mov     ecx, [ebp+ms_exc.registration.Next]
+.text:004012C9                 mov     large fs:0, ecx
+.text:004012D0                 pop     ecx
+.text:004012D1                 pop     edi
+.text:004012D2                 pop     esi
+.text:004012D3                 pop     ebx
+.text:004012D4                 mov     esp, ebp
+.text:004012D6                 pop     ebp
+.text:004012D7                 retn
+```
+
+Therefore, the block where it set eax to 1 will not be used. 
+
+To bypass this, change the comparison instruction, from jnz to jz.
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/29bfde9d-2bb0-4351-b6b7-7c1b6c783cfd)

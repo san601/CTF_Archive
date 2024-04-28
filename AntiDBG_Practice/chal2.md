@@ -246,7 +246,7 @@ int __spoils<ecx> sub_401240()
 
 ```__indword``` is used to read one double word of data from the specified port, in this case it is port number 0x5658.
 
-```C
+```assembly
     mov     [ebp+ms_exc.registration.TryLevel], 0
     push    edx
     push    ecx

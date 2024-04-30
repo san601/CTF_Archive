@@ -1,5 +1,21 @@
 # Prob.exe
 
+## Explanation
+
+Let's open the file in IDA
+
+Firstly, it reads the flag in flag.txt
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/7d19079b-79ac-4770-8659-9b0cae2195b1)
+
+and then go through this encryption stuff, with Str is ```'have a good day! enjoy wargame!'```.
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/360286c6-a317-465b-8f67-8f16ee531e71)
+
+Lastly, it prints out the encrypted flag in the format of ```%#llX```, which means a long long hex value with ```0X``` at the start.
+
+## Script:
+
 ```python
 enc = [0x29AF, 0x2493, 0x35A9, 0x2729, 0x414, 0x2453, 0x458, 0x28EF, 0x2F9E, 0x2FFC, 0x26D0, 0x467, 0x26EB, 0x2439,
        0x3914, 0x42C, 0x43F, 0x275F, 0x2EDD, 0x2B2B, 0x300F, 0x389C, 0x41D, 0x36A6, 0x2474, 0x3229, 0x2979, 0x24A9,
@@ -18,3 +34,8 @@ for i in range(0, 0x51):
 for i in range(len(enc)):
     print(chr(enc[i]), end='')
 ```
+
+## Flag
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/74c7020c-b9b2-4721-b190-87f8fba6723f)
+

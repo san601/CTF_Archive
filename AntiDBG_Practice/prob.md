@@ -14,6 +14,8 @@ and then go through this encryption stuff, with Str is ```'have a good day! enjo
 
 Lastly, it prints out the encrypted flag in the format of ```%#llX```, which means a long long hex value with ```0X``` at the start.
 
+![image](https://github.com/san601/CTF_Archive/assets/144963803/26fe69ed-0caa-4469-8e84-e03fae715421)
+
 ## Script:
 
 ```python

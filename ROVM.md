@@ -22,9 +22,15 @@ Keep debugging until the program reach the end of the input, which is a Line Fee
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/380316a3-1433-48a3-9b33-862c03b35d31)
 
-The program subtra our input with a value at 0x1225948 on the stack, which is 0x24. So the length of the flag is 0x24.
+The program subtract our input's length with a value at 0x1225948 on the stack, which is 0x24. So the length of the flag is 0x24.
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/0e4c3638-8670-4a22-be99-6b0f4d40272f)
+
+There's a constant 0xFB that is fetched into RAX for every character in the input. Each character in the input will be multiply with a list of number 
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/1487f989-a73a-4fbc-91a3-1d16ddcbc85b)
+
+and then mod with 0xFB, subtract with 1. If the result is 0, the character is correct.
 
 ```python
 enc = [

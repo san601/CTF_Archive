@@ -16,6 +16,15 @@ Knowing the address, we can rebase the program of ```opcode``` and ```chain``` f
 
 ![image](https://github.com/san601/CTF_Archive/assets/144963803/913e9384-6754-42b0-a696-bff65a104825)
 
+The fact that the program uses ROP to execute, we can't do anything other than debugging through every ROP gadget and see what it does.
+
+Keep debugging until the program reach the end of the input, which is a Line Feed character (0xA)
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/380316a3-1433-48a3-9b33-862c03b35d31)
+
+The program subtra our input with a value at 0x1225948 on the stack, which is 0x24. So the length of the flag is 0x24.
+
+![image](https://github.com/san601/CTF_Archive/assets/144963803/0e4c3638-8670-4a22-be99-6b0f4d40272f)
 
 ```python
 enc = [
